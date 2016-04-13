@@ -1,0 +1,94 @@
+<!doctype html>
+<head>
+    <meta name="viewport" content="initial-scale=1, user-scalable=0, minimal-ui" charset="UTF-8">
+    <title>loadmore测试2---使用滚动的方法加载更多</title>
+	<link rel="stylesheet" href="css/demo.css">
+    
+</head>
+<body>
+<div class="header">
+    <h1>就当我是新闻页吧</h1>
+</div>
+<div class="content">
+    <div class="lists"></div>
+</div>
+<script src="js/zepto.min.js"></script>
+<script>
+$(function(){
+
+	/*初始化*/
+	var counter = 0; /*计数器*/
+	var pageStart = 0; /*offset*/
+	var pageSize = 5; /*size*/
+	var isEnd = false;
+	
+	/*首次加载*/
+	getData(pageStart, pageSize);
+	
+	/*监听加载更多*/	
+	$(window).scroll(function(){
+		// 当滚动到最底部以上100像素时， 加载新内容
+		if ($(document).height() - $(this).scrollTop() - $(this).height()<100){
+			counter ++;
+			pageStart = counter * pageSize;
+			
+			getData(pageStart, pageSize);
+		}
+	});
+    
+	
+	function getData(offset,size){
+		if(isEnd) return;
+		
+		$.ajax({
+			type: 'GET',
+			url: 'json/more.json',
+			dataType: 'json',
+			success: function(reponse){
+
+				var data = reponse.lists;
+				var sum = reponse.lists.length;
+
+				var result = '';
+				
+				/************业务逻辑块：实现拼接html内容并append到页面*****************/
+				
+				//console.log(offset , size, sum);
+				
+				/*如果剩下的记录数不够分页，就让分页数取剩下的记录数
+				* 例如分页数是5，只剩2条，则只取2条
+				*
+				* 实际MySQL查询时不写这个不会有问题
+				*/
+				if(sum - offset < size ){
+					size = sum - offset;
+				}
+				
+				/*使用for循环模拟SQL里的limit(offset,size)*/
+				for(var i=offset; i< (offset+size); i++){
+					result +=   '<a class="item opacity" href="'+data[i].link+'">'
+									+'<img src="'+data[i].pic+'" alt="">'
+									+'<h3>'+data[i].title+'</h3>'
+									+'<span class="date">'+data[i].date+'</span>'
+								+'</a>';
+				}
+
+				$('.lists').append(result);
+				
+				/*******************************************/
+	
+				if ( (offset + size) >= sum){
+					isEnd = true;
+					//提示没有了
+				}
+			},
+			error: function(xhr, type){
+				alert('Ajax error!');
+			}
+		});
+	}
+});
+</script>
+<script src="js/tj.js"></script>
+</body>
+</html>
