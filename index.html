@@ -1,0 +1,183 @@
+<!doctype html>
+<head>
+    <meta name="viewport" content="initial-scale=1, user-scalable=0, minimal-ui" charset="UTF-8">
+    <title>loadmore测试</title>
+	<link rel="stylesheet" href="loadmore.css">
+    <style>
+	/*页面CSS，实际可以不需要*/
+    *{
+        margin: 0;
+        padding:0;
+        -webkit-tap-highlight-color:rgba(0,0,0,0);
+        -webkit-text-size-adjust:none;
+    }
+    html{
+        font-size:10px;
+    }
+    body{
+        background-color: #f5f5f5;
+        font-size: 1.2em;
+    }
+    .header{
+        height: 44px;
+        line-height: 44px;
+        border-bottom: 1px solid #ccc;
+        background-color: #eee;
+    }
+    .header h1{
+        text-align: center;
+        font-size: 2rem;
+        font-weight: normal;
+    }
+    .content{
+        background-color: #fff;
+    }
+    .content .item{
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align:center;
+        -webkit-box-align:center;
+        box-align:center;
+        -webkit-align-items:center;
+        align-items:center;
+        padding:3.125%;
+        border-bottom: 1px solid #ddd;
+        color: #333;
+        text-decoration: none;
+    }
+    .content .item img{
+        display: block;
+        width: 40px;
+        height: 40px;
+        border:1px solid #ddd;
+    }
+    .content .item h3{
+        display: block;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        width: 100%;
+        max-height: 40px;
+        overflow: hidden;
+        line-height: 20px;
+        margin: 0 10px;
+        font-size: 1.2rem;
+    }
+    .content .item .date{
+        display: block;
+        height: 20px;
+        line-height: 20px;
+        color: #999;
+    }
+    .opacity{
+        -webkit-animation: opacity 0.3s linear;
+        animation: opacity 0.3s linear;
+    }
+    @-webkit-keyframes opacity {
+        0% {
+            opacity:0;
+        }
+        100% {
+            opacity:1;
+        }
+    }
+    @keyframes opacity {
+        0% {
+            opacity:0;
+        }
+        100% {
+            opacity:1;
+        }
+    }
+    </style>
+    
+</head>
+<body>
+<div class="header">
+    <h1>就当我是新闻页吧</h1>
+</div>
+<div class="content">
+    <div class="lists"></div>
+	
+	<!--加载更多按钮-->
+	<div class="js-load-more">加载更多</div>
+	
+</div>
+<script src="zepto.min.js"></script>
+<script>
+$(function(){
+
+	/*初始化*/
+	var counter = 0; /*计数器*/
+	var pageStart = 0; /*offset*/
+	var pageSize = 4; /*size*/
+	
+	/*首次加载*/
+	getData(pageStart, pageSize);
+	
+	/*监听加载更多*/
+	$(document).on('click', '.js-load-more', function(){
+		counter ++;
+		pageStart = counter * pageSize;
+		
+		getData(pageStart, pageSize);
+	});
+    
+	
+	function getData(offset,size){
+		$.ajax({
+			type: 'GET',
+			url: 'json/more.json',
+			dataType: 'json',
+			success: function(reponse){
+
+				var data = reponse.lists;
+				var sum = reponse.lists.length;
+
+				var result = '';
+				
+				/************业务逻辑块：实现拼接html内容并append到页面*****************/
+				
+				//console.log(offset , size, sum);
+				
+				/*如果剩下的记录数不够分页，就让分页数取剩下的记录数
+				* 例如分页数是5，只剩2条，则只取2条
+				*
+				* 实际MySQL查询时不写这个不会有问题
+				*/
+				if(sum - offset < size ){
+					size = sum - offset;
+				}
+				
+				/*使用for循环模拟SQL里的limit(offset,size)*/
+				for(var i=offset; i< (offset+size); i++){
+					result +=   '<a class="item opacity" href="'+data[i].link+'">'
+									+'<img src="'+data[i].pic+'" alt="">'
+									+'<h3>'+data[i].title+'</h3>'
+									+'<span class="date">'+data[i].date+'</span>'
+								+'</a>';
+				}
+
+				$('.lists').append(result);
+				
+				/*******************************************/
+	
+				/*隐藏more*/
+				if ( (offset + size) >= sum){
+					$(".js-load-more").hide();
+				}else{
+					$(".js-load-more").show();
+				}
+			},
+			error: function(xhr, type){
+				alert('Ajax error!');
+			}
+		});
+	}
+});
+</script>
+</body>
+</html>
