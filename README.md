@@ -7,3 +7,7 @@
 
 [demo](http://demo.52fhy.com/loadmore/)
 
+
+js实现『加载更多』功能实例 - 飞鸿影~ - 博客园
+http://www.cnblogs.com/52fhy/p/5405541.html
+
