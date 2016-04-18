@@ -2,15 +2,18 @@
 <head>
     <meta name="viewport" content="initial-scale=1, user-scalable=0, minimal-ui" charset="UTF-8">
     <title>loadmore测试2---使用滚动的方法加载更多</title>
-	<link rel="stylesheet" href="css/demo.css">
+	<link rel="stylesheet" href="css/weui.css">
     
 </head>
 <body>
-<div class="header">
-    <h1>就当我是新闻页吧</h1>
-</div>
 <div class="content">
-    <div class="lists"></div>
+    <div class="weui_panel weui_panel_access">
+        <div class="weui_panel_hd">文章列表</div>
+        <div class="weui_panel_bd js-blog-list">
+           
+        </div>
+    </div>
+	
 </div>
 <script src="js/zepto.min.js"></script>
 <script>
@@ -19,14 +22,22 @@ $(function(){
 	/*初始化*/
 	var counter = 0; /*计数器*/
 	var pageStart = 0; /*offset*/
-	var pageSize = 5; /*size*/
-	var isEnd = false;
+	var pageSize = 7; /*size*/
+	var isEnd = false;/*结束标志*/
+	var isAjax = false;/*防止滚动过快，服务端没来得及响应造成多次请求*/
 	
 	/*首次加载*/
 	getData(pageStart, pageSize);
 	
 	/*监听加载更多*/	
 	$(window).scroll(function(){
+		console.log(isEnd, isAjax);
+		
+		/*滚动加载时如果已经没有更多的数据了、正在发生请求时，不能继续进行*/
+		if(isEnd == true || isAjax == true){
+			return;
+		}
+
 		// 当滚动到最底部以上100像素时， 加载新内容
 		if ($(document).height() - $(this).scrollTop() - $(this).height()<100){
 			counter ++;
@@ -38,16 +49,19 @@ $(function(){
     
 	
 	function getData(offset,size){
-		if(isEnd) return;
-		
+	
+		isAjax = true;
+
 		$.ajax({
 			type: 'GET',
-			url: 'json/more.json',
+			url: 'json/blog.json'+ '?' + offset + '/' + size, //这里offset,size无作用，仅方便调试
 			dataType: 'json',
 			success: function(reponse){
 
-				var data = reponse.lists;
-				var sum = reponse.lists.length;
+				isAjax = false;
+				
+				var data = reponse.list;
+				var sum = reponse.list.length;
 
 				var result = '';
 				
@@ -66,14 +80,13 @@ $(function(){
 				
 				/*使用for循环模拟SQL里的limit(offset,size)*/
 				for(var i=offset; i< (offset+size); i++){
-					result +=   '<a class="item opacity" href="'+data[i].link+'">'
-									+'<img src="'+data[i].pic+'" alt="">'
-									+'<h3>'+data[i].title+'</h3>'
-									+'<span class="date">'+data[i].date+'</span>'
-								+'</a>';
+					result +='<div class="weui_media_box weui_media_text">'+
+							'<a href="'+ data[i].url +'" target="_blank"><h4 class="weui_media_title">'+ data[i].title +'</h4></a>'+
+							'<p class="weui_media_desc">'+ data[i].desc +'</p>'+
+						'</div>';
 				}
 
-				$('.lists').append(result);
+				$('.js-blog-list').append(result);
 				
 				/*******************************************/
 	

@@ -1,0 +1,108 @@
+{
+    "list": [
+        {
+            "title": "[置顶]Laravel5.0学习--01 入门",
+            "url": "http://www.cnblogs.com/52fhy/p/5271447.html",
+            "desc": "摘要: 本文以laravel5.0.22为例。 环境需求 Laravel5.0 框架有一些系统上的需求： PHP 版本 = 5.4 Mcrypt PHP 扩展 OpenSSL PHP 扩展 Mbstring PHP 扩展 Tokenizer PHP 扩展 在 PHP 5.5 之后， 有些操作系统需要手动安装"
+        },
+		{
+            "title": "js实现『加载更多』功能实例",
+            "url": "http://www.cnblogs.com/52fhy/p/5405541.html",
+            "desc": "摘要: DEMO : \"滚动加载示例关于如何实现『加载更多』功能，网上有插件可用，例如比较著名的使用 \"iscroll.js\" 实现的 \"上拉加载更多、下拉刷新\" 功能。 但实际用起来却是很麻烦。由于是第三方插件，要按照对方定义的方法使用，用起来总感觉很不顺心。再加上iscroll.js本身并没有集成加"
+        },
+		{
+            "title": "JSONP浅析",
+            "url": "http://www.cnblogs.com/52fhy/p/5402210.html",
+            "desc": "摘要: DEMO : \"JSONP示例\" 为什么使用JSONP JSONP和JSON是不一样的。JSON( )是一种基于文本的数据交换方式，或者叫做数据描述格式。而JSONP( )是一种方式或者说非强制性协议。它是为了解决某个难题而产生的一种技术方式。 为什么会用到JSONP呢？ 我们平时在用ajax请求服"
+        },
+		{
+            "title": "使用JSSDK集成微信分享遇到的一些坑",
+            "url": "http://www.cnblogs.com/52fhy/p/5397795.html",
+            "desc": "摘要: h5项目中需要集成微信分享，以实现自定义标题、描述、图片等功能。结果遇到了很多坑。 准备工作 务必详细阅读微信JS-SDK说明文档 需要后端支持 强烈建议下载使用微信web开发者工具 按文档配置好公众号 JSSDK使用步骤 步骤一：绑定域名 先登录微信公众平台进入“公众号设置”的“功能设置"
+        },
+		{
+            "title": "JavaScript模板引擎实例应用",
+            "url": "http://www.cnblogs.com/52fhy/p/5393673.html",
+            "desc": "摘要: 在之前的一篇名为《 \"移动端基于HTML模板和JSON数据的JavaScript交互\" 》的文章中，我向大家说明了为什么要使用JavaScript模板以及如何使用，文末还提到了laytpl、artTemplate、doT、baiduTemplate、kissyTemplate等模板引擎。 本文将举"
+        },
+        {
+            "title": "[置顶]CI框架笔记",
+            "url": "http://www.cnblogs.com/52fhy/p/4823390.html",
+            "desc": "摘要: @update 2016 4 2 13:45:35 一、目录结构 ci_demo ├─myapp 应用主目录 │ ├─autoload.php 自定义的自动加载文件（可选） │ ├─myapp.php应用入口文件，拷贝index.php得到"
+        },
+        {
+            "title": "纯js实现复制到剪贴板功能",
+            "url": "http://www.cnblogs.com/52fhy/p/5383813.html",
+            "desc": "摘要: 在网页上复制文本到剪切板，一般是使用JS+Flash结合的方法，网上有很多相关文章介绍。随着 HTML5 技术的发展，Flash 已经在很多场合不适用了，甚至被屏蔽。本文介绍的一款JS插件，实现了纯JS方法复制文本到剪切板。 插件名是Clipboard.js"
+        },
+        {
+            "title": "ThinkPHP框架里隐藏index.php",
+            "url": "http://www.cnblogs.com/52fhy/p/5380185.html",
+            "desc": "摘要: 本文所写的配置在ThinkPHP3.2.2上测试过。按理也兼容其它版本。 首先修改配置文件： Nginx 推荐： 意思是：如果第一个 不存在，就访问 ；如果 还不存在，访问 。可以后面跟很多个。 再例如： 什么意思呢？uri不能成功访问"
+        },
+        {
+            "title": "JS图片懒加载",
+            "url": "http://www.cnblogs.com/52fhy/p/5344182.html",
+            "desc": "摘要: 简介 当页面图片太多时，加载速度就会很慢。尤其是用2G/3G/4G访问页面，不仅页面慢，而且还会用掉很多流量。图片懒加载的原理就是将页面内所有需要加载的图片全部换成一张默认的图片（一般尺寸很小），只有图片在可视区域才去请求加载。 "
+        },
+        {
+            "title": "移动端基于HTML模板和JSON数据的JavaScript交互",
+            "url": "http://www.cnblogs.com/52fhy/p/5358957.html",
+            "desc": "摘要: 写本文之前，我正在做一个基于Tab页的订单中心： 每点击一个TAB标签，会请求对应状态的订单列表。之前的项目，我会在js里使用 + 连接符连接多个html内容： Html内容少点还好，但是当内容多起来的时候，再使用这种方式，以后维护起来不方便，也影响美观，可阅读性差"
+        },
+        {
+            "title": "移动端使用localResizeIMG4压缩图片",
+            "url": "http://www.cnblogs.com/52fhy/p/5355601.html",
+            "desc": "摘要: 移动h5开发避免不了上传图片，一般我们使用html自带的控件 或者使用 。但微信上传API不是任何地方都可以使用的，使用html自带的控件input上传又免不了图片体积太大，上传不稳定。localResizeIMG4就是为此而生的。 本文演示版本localResizeIMG 4.9.35"
+        },
+        {
+            "title": "PHP数据库操作：使用ORM",
+            "url": "http://www.cnblogs.com/52fhy/p/5353181.html",
+            "desc": "摘要: 之前我发了一篇博文 PHP数据库操作：从MySQL原生API到PDO ，向大家展示PHP是如何使用 、`MySQLi面向过程 MySQLi面向对象 PDO ORM`操作数据库。 什么是ORM呢？引用网友的话： 对象关系映射，O（ ） 对象，在项目中就是实体，更加精确的来说就是数据"
+        },
+        {
+            "title": "PHP数据库操作：从MySQL原生API到PDO",
+            "url": "http://www.cnblogs.com/52fhy/p/5352304.html",
+            "desc": "摘要: 本文将举详细例子向大家展示PHP是如何使用 、`MySQLi面向过程 MySQLi面向对象 PDO`操作MySQL数据库的。 为了后面的测试，先建立数据库表 。包含表名 ,`score`。 CREATE TABLE ( int(10) unsigned NOT NULL AUTO_INCREMENT"
+        },{
+            "title": "[置顶]Laravel5.0学习--01 入门",
+            "url": "http://www.cnblogs.com/52fhy/p/5271447.html",
+            "desc": "摘要: 本文以laravel5.0.22为例。 环境需求 Laravel5.0 框架有一些系统上的需求： PHP 版本 = 5.4 Mcrypt PHP 扩展 OpenSSL PHP 扩展 Mbstring PHP 扩展 Tokenizer PHP 扩展 在 PHP 5.5 之后， 有些操作系统需要手动安装"
+        },
+		{
+            "title": "js实现『加载更多』功能实例",
+            "url": "http://www.cnblogs.com/52fhy/p/5405541.html",
+            "desc": "摘要: DEMO : \"滚动加载示例关于如何实现『加载更多』功能，网上有插件可用，例如比较著名的使用 \"iscroll.js\" 实现的 \"上拉加载更多、下拉刷新\" 功能。 但实际用起来却是很麻烦。由于是第三方插件，要按照对方定义的方法使用，用起来总感觉很不顺心。再加上iscroll.js本身并没有集成加"
+        },
+		{
+            "title": "JSONP浅析",
+            "url": "http://www.cnblogs.com/52fhy/p/5402210.html",
+            "desc": "摘要: DEMO : \"JSONP示例\" 为什么使用JSONP JSONP和JSON是不一样的。JSON( )是一种基于文本的数据交换方式，或者叫做数据描述格式。而JSONP( )是一种方式或者说非强制性协议。它是为了解决某个难题而产生的一种技术方式。 为什么会用到JSONP呢？ 我们平时在用ajax请求服"
+        },
+		{
+            "title": "使用JSSDK集成微信分享遇到的一些坑",
+            "url": "http://www.cnblogs.com/52fhy/p/5397795.html",
+            "desc": "摘要: h5项目中需要集成微信分享，以实现自定义标题、描述、图片等功能。结果遇到了很多坑。 准备工作 务必详细阅读微信JS-SDK说明文档 需要后端支持 强烈建议下载使用微信web开发者工具 按文档配置好公众号 JSSDK使用步骤 步骤一：绑定域名 先登录微信公众平台进入“公众号设置”的“功能设置"
+        },
+		{
+            "title": "JavaScript模板引擎实例应用",
+            "url": "http://www.cnblogs.com/52fhy/p/5393673.html",
+            "desc": "摘要: 在之前的一篇名为《 \"移动端基于HTML模板和JSON数据的JavaScript交互\" 》的文章中，我向大家说明了为什么要使用JavaScript模板以及如何使用，文末还提到了laytpl、artTemplate、doT、baiduTemplate、kissyTemplate等模板引擎。 本文将举"
+        },
+        {
+            "title": "[置顶]CI框架笔记",
+            "url": "http://www.cnblogs.com/52fhy/p/4823390.html",
+            "desc": "摘要: @update 2016 4 2 13:45:35 一、目录结构 ci_demo ├─myapp 应用主目录 │ ├─autoload.php 自定义的自动加载文件（可选） │ ├─myapp.php应用入口文件，拷贝index.php得到"
+        },
+        {
+            "title": "纯js实现复制到剪贴板功能",
+            "url": "http://www.cnblogs.com/52fhy/p/5383813.html",
+            "desc": "摘要: 在网页上复制文本到剪切板，一般是使用JS+Flash结合的方法，网上有很多相关文章介绍。随着 HTML5 技术的发展，Flash 已经在很多场合不适用了，甚至被屏蔽。本文介绍的一款JS插件，实现了纯JS方法复制文本到剪切板。 插件名是Clipboard.js"
+        },
+        {
+            "title": "ThinkPHP框架里隐藏index.php",
+            "url": "http://www.cnblogs.com/52fhy/p/5380185.html",
+            "desc": "摘要: 本文所写的配置在ThinkPHP3.2.2上测试过。按理也兼容其它版本。 首先修改配置文件： Nginx 推荐： 意思是：如果第一个 不存在，就访问 ；如果 还不存在，访问 。可以后面跟很多个。 再例如： 什么意思呢？uri不能成功访问"
+        }
+    ]
+}

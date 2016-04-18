@@ -1,0 +1,90 @@
+<!doctype html>
+<head>
+    <meta name="viewport" content="initial-scale=1, user-scalable=0, minimal-ui" charset="UTF-8">
+    <title>loadmore测试3---使用点击+滚动的方法加载更多</title>
+	<link rel="stylesheet" href="css/weui.css">
+	<link rel="stylesheet" href="css/loadmore.css">
+    
+</head>
+<body>
+<div class="content">
+    <div class="weui_panel weui_panel_access">
+        <div class="weui_panel_hd">文章列表</div>
+        <div class="weui_panel_bd js-blog-list">
+           
+        </div>
+    </div>
+	
+	<!--加载更多按钮-->
+	<div class="js-load-more">加载更多</div>
+	
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/loadmore.js"></script>
+<script>
+$(function(){
+
+function getData(config, offset,size){
+
+	config.isAjax = true;
+
+	$.ajax({
+		type: 'GET',
+		url: 'json/blog.json' + '?' + offset + '/' + size, //这里offset,size无作用，仅方便调试
+		dataType: 'json',
+		success: function(reponse){
+		
+			config.isAjax = false;
+
+			var data = reponse.list;
+			var sum = reponse.list.length;
+			
+			var result = '';
+			
+			/************业务逻辑块：实现拼接html内容并append到页面*****************/
+			
+			//console.log(offset , size, sum);
+			
+			/*如果剩下的记录数不够分页，就让分页数取剩下的记录数
+			* 例如分页数是5，只剩2条，则只取2条
+			*
+			* 实际MySQL查询时不写这个
+			*/
+			if(sum - offset < size ){
+				size = sum - offset;
+			}
+
+			
+			/*使用for循环模拟SQL里的limit(offset,size)*/
+			for(var i=offset; i< (offset+size); i++){
+				result +='<div class="weui_media_box weui_media_text">'+
+						'<a href="'+ data[i].url +'" target="_blank"><h4 class="weui_media_title">'+ data[i].title +'</h4></a>'+
+						'<p class="weui_media_desc">'+ data[i].desc +'</p>'+
+					'</div>';
+			}
+
+			$('.js-blog-list').append(result);
+			
+			/*******************************************/
+			
+			/*隐藏more*/
+			if ( (offset + size) >= sum){
+				$(".js-load-more").hide();
+				config.isEnd = true; /*停止滚动加载请求*/
+				//提示没有了
+			}else{
+				$(".js-load-more").show();
+			}
+		},
+		error: function(xhr, type){
+			alert('Ajax error!');
+		}
+	});
+}
+	
+	$.loadmore.get(getData, {scroll: true, size:7});
+});
+</script>
+<script src="js/tj.js"></script>
+</body>
+</html>
