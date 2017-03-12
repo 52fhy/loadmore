@@ -5,7 +5,7 @@
 如截图所示：
 ![loadmore](img/loadmore.jpg)
 
-[demo](http://demo.52fhy.com/loadmore/)
+[demo](http://me.52fhy.com/demo/loadmore/)
 
 
 js实现『加载更多』功能实例 - 飞鸿影~ - 博客园
